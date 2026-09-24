@@ -1,0 +1,15 @@
+CREATE EXTERNAL TABLE public_health_db_reference.ny_county_dsrip_region_mapping (
+  geographic_area string,
+  dsrip_region string
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+  'separatorChar' = ',',
+  'quoteChar' = '"',
+  'escapeChar' = '\\'
+)
+STORED AS TEXTFILE
+LOCATION 's3://publichealth-project-data-lake-152125350281-us-east-2-an/reference/ny-state/dsrip-region-mapping/'
+TBLPROPERTIES (
+  'skip.header.line.count'='1'
+);
